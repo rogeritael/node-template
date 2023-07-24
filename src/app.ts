@@ -1,7 +1,7 @@
 import express, { Application } from 'express';
 import cors from 'cors';
 
-import routes from './app/routes/routes';
+import UserRouter from './app/routes/UserRoutes';
 
 class App {
   public server: Application;
@@ -18,7 +18,7 @@ class App {
   }
 
   routes(){
-    this.server.use(routes);
+    this.server.use(UserRouter);
   }
 }
 

@@ -17,12 +17,27 @@ class UserController {
     res.status(200).json(user);
   }
 
-  async store(){
+  async store(req: Request, res: Response){
     //criar novo registro
+    const { name, email, phone, category_id } = req.body;
+
+    const user = await UserRepository.create({
+      name, email, phone, category_id
+    });
+
+    res.json(user);
   }
 
-  async update(){
+  async update(req: Request, res: Response){
     //editar um registro[]
+    const { id } = req.params;
+    const { name, email, phone, category_id } = req.body;
+
+    const user = await UserRepository.update(id, {
+      name, email, phone, category_id
+    });
+
+    res.json(user);
   }
 
   async delete(req: Request, res: Response){
