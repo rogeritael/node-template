@@ -1,4 +1,4 @@
-import db from '../database/postgres';
+import query from '../database/postgres';
 
 interface contactProps {
     id?: string,
@@ -9,16 +9,30 @@ interface contactProps {
 }
 
 class UserRepository {
-  findAll() {
+  async findAll() {
+    const rows = await query(`
+      SELECT * FROM users
+    `);
 
+    return rows;
   }
 
-  findById(id: string){
+  async findById(id: string){
+    const [ row ] = await query(`
+      SELECT * FROM users
+      WHERE id = $1
+    `, [id]);
 
+    return row;
   }
 
-  findByEmail(email: string){
+  async findByEmail(email: string){
+    const [row] = await query(`
+      SELECT * FROM users
+      WHERE email = $1
+    `, [email]);
 
+    return row;
   }
 
   delete(id: string){
@@ -27,7 +41,7 @@ class UserRepository {
 
   async create({ name , email, phone, category_id }: contactProps){
     //[] pega o primeira posição do array e coloca dentro da constante row
-    const [row] = await db(`
+    const [row] = await query(`
       INSERT INTO users(name, email, phone, category_id)
       VALUES($1, $2, $3, $4)
       RETURNING *
