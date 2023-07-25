@@ -12,6 +12,7 @@ class UserRepository {
   async findAll() {
     const rows = await query(`
       SELECT * FROM users
+      ORDER BY name
     `);
 
     return rows;
@@ -35,8 +36,13 @@ class UserRepository {
     return row;
   }
 
-  delete(id: string){
+  async delete(id: string){
+    const [row] = await query(`
+      DELETE FROM users
+      WHERE id = $1
+    `, [id]);
 
+    return row;
   }
 
   async create({ name , email, phone, category_id }: contactProps){
@@ -50,8 +56,15 @@ class UserRepository {
     return row;
   }
 
-  update(id: string, { name , email, phone, category_id }: contactProps){
+  async update(id: string, { name , email, phone, category_id }: contactProps){
+    const [row] = await query(`
+      UPDATE users
+      SET name = $1, email = $2, phone = $3, category_id = $4
+      WHERE id = $5
+      RETURNING *
+    `, [name, email, phone, category_id, id]);
 
+    return row;
   }
 }
 
