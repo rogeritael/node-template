@@ -37,12 +37,12 @@ class UserRepository {
   }
 
   async delete(id: string){
-    const [row] = await query(`
+    const deleteOP = await query(`
       DELETE FROM users
       WHERE id = $1
     `, [id]);
 
-    return row;
+    return deleteOP;
   }
 
   async create({ name , email, phone, category_id }: contactProps){
