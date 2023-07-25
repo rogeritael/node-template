@@ -15,7 +15,9 @@ client.connect();
 //   return result.rows;
 // }
 
-exports.query = async (query: string) => {
-  const { rows } = await client.query(query);
+const query = async (query: string, values: any) => {
+  const { rows } = await client.query(query, values);
   return rows;
 };
+
+export default query;
