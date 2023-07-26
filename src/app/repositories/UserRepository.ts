@@ -11,9 +11,10 @@ interface contactProps {
 class UserRepository {
   async findAll() {
     const rows = await query(`
-      SELECT * FROM users
-      ORDER BY name
-    `);
+      SELECT users.*, categories.name AS category_name FROM users
+      LEFT JOIN categories ON categories.id = users.category_id
+      ORDER BY users.name
+    `); //onde id de categories equivale a category_id de users
 
     return rows;
   }
