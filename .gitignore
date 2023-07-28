@@ -1,0 +1,5 @@
+node_modules
+.vscode
+#.gitkeep mantém a pasta mesmo que esteja vazia
+tmp/*
+.env

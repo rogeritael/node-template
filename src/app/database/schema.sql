@@ -4,7 +4,7 @@ CREATE EXTENSION IF NOT EXISTS "uuid-ossp"; --pacote do uuid
 
 CREATE TABLE IF NOT EXISTS categories (
   id UUID NOT NULL UNIQUE DEFAULT uuid_generate_v4(), --função que gera o uuid
-  name VARCHAR NOT NULL,
+  name VARCHAR NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS users (

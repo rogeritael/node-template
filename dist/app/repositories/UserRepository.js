@@ -8,12 +8,18 @@ var _postgres = _interopRequireDefault(require("../database/postgres"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 class UserRepository {
   async findAll() {
-    const rows = await (0, _postgres.default)(`
-      SELECT users.*, categories.name AS category_name FROM users
-      LEFT JOIN categories ON categories.id = users.category_id
-      ORDER BY users.name
-    `); //onde id de categories equivale a category_id de users
-
+    // const rows = await query(`
+    //   SELECT users.*, categories.name AS category_name FROM users
+    //   LEFT JOIN categories ON categories.id = users.category_id
+    //   ORDER BY users.name
+    // `); //onde id de categories equivale a category_id de users
+    const rows = [{
+      user_id: 1,
+      name: 'Roger'
+    }, {
+      user_id: 2,
+      name: 'Nath'
+    }];
     return rows;
   }
   async findById(id) {
