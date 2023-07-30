@@ -30,7 +30,14 @@
   cola a chave publica gerada no nosso computador local
 
   sudo apt update
-  instalar node, docker e docker-compose(sudo apt  install docker-compose)
+  instalar node, docker e docker-compose
+  node: [
+    curl -fsSL https://deb.nodesource.com/setup_lts.x | sudo -E bash -
+    sudo apt-get install -y nodejs
+  ]
+  docker-compose: [
+    sudo apt  install docker-compose
+  ]
 -->
 
 
