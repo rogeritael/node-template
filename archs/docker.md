@@ -1,3 +1,10 @@
+<!-- inicializar -->
+<!--
+  sudo systemctl start docker
+  docker start
+
+ -->
+
 <!-- Crie um arquivo chamado "Dockerfile" -->
 
 
